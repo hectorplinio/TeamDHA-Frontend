@@ -1,0 +1,34 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag teamdha/nextjs:${{github.sha}}
+      - name: Push docker image
+        run: docker push teamdha/nextjs:${{github.sha}}
+  deploy-to-cluster:
+    name: deploy to cluster
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@master
+      - name: kubectl - Google Cloud GKE cluster.
+        uses: ameydev/gke-kubectl-action@master
+        env:
+          PROJECT_ID: dulcet-bucksaw-350506
+          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          CLUSTER_NAME: node-server
+          ZONE_NAME: europe-west1
+        with:
+          args: set image deployment/next-deployment next=teamdha/nextjs:${{github.sha}}
