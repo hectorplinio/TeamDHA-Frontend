@@ -1,3 +1,6 @@
+# Presentation
+The frontend project I had to do in my internship, in it I used nextJs and this is the skeleton and the basic configurations of Jest, Tailwind, prettier, eslint and docker. I didn't have time to finish it but it's enough to have an idea of how to start a project.
+
 # With Docker
 
 This examples shows how to use Docker with Next.js based on the [deployment documentation](https://nextjs.org/docs/deployment#docker-image). Additionally, it contains instructions for deploying to Google Cloud Run. However, you can use any container-based deployment host.
