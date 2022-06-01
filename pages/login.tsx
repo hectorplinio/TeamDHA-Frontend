@@ -48,8 +48,8 @@ const Login: NextPage = () => {
             <h1 className="text-4xl font-bold text-white text-center m-12 block mt-3">
                 Log in!
             </h1>
-            <div className="flex flex-col items-center justify-center bg-white w-64 text-center m-auto rounded-lg">
-                <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col items-center justify-center bg-white w-64 text-center m-auto rounded-lg mb-12">
+                <form id="login-form" onSubmit={handleSubmit(onSubmit)} className="m-4">
                     <br />
                     <p className='text-red-500 text-sm'>{loginErrors}</p>
                     <input
@@ -58,7 +58,7 @@ const Login: NextPage = () => {
                             required: "Email is required",
                         })}
                         placeholder="Email"
-                        className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                        className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"
                     ></input>
                     <br></br>
                     <input
@@ -67,7 +67,7 @@ const Login: NextPage = () => {
                             required: "Password is required",
                         })}
                         placeholder="Password"
-                        className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                        className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"
                     ></input>
                     <p>{errors.password?.message}</p>
                     <button className="bg-blue-jat w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105 my-8">
